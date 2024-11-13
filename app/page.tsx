@@ -1,8 +1,19 @@
-export default function Home() {
+import { getDecodedServerToken } from "@/serverActions/serverCookieUtils";
+import Banner from "./banner";
+import Header from "./header";
+import gamer from "./logout";
+import Logout from "./logout";
+
+export default async function Home() {
+  const decodedToken = await getDecodedServerToken();
+  const username = decodedToken ? decodedToken.username : null;
+  const email = decodedToken ? decodedToken.email : null;
+  const accessLevel = decodedToken ? decodedToken.accessLevel : null;
+
   return (
-    <div className="flex justify-center items-center w-screen h-screen flex-col">
-      <div className="w-[100px] h-[100px] bg-red-500 rounded-full"></div>
-      <h1 className="text-6xl pt-5">Hello WOrld</h1>
-    </div>
+    <>
+      <Header />
+      <Banner />
+    </>
   );
 }
