@@ -1,7 +1,5 @@
 import { fetchWithRetry } from "@/serverActions/fetch";
-import { getDecodedServerToken } from "@/serverActions/serverCookieUtils";
 import { IMuscle } from "@/Types/models";
-import { redirect } from "next/navigation";
 import MuscleItem from "./item";
 
 const getMuscles = async () => {
@@ -20,59 +18,23 @@ const getMuscles = async () => {
 };
 
 export default async function Page() {
-  const decodedToken = await getDecodedServerToken();
-  if (!decodedToken) {
-    redirect("/auth/login");
-  }
-
   const muscles: IMuscle[] = await getMuscles();
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 container mx-auto my-20">
-      {muscles.map((muscle) => (
-        <MuscleItem
-          key={muscle._id}
-          name={muscle.name}
-          scientificName={muscle.scientificName}
-          image={null} // add image
-          description={null} // add description to muscle model
-        />
-      ))}
-      <MuscleItem
-        name={"herlo"}
-        scientificName={"sadf"}
-        image={null} // add image
-        description={null} // add description to muscle model
-      />
-      <MuscleItem
-        name={"herlo"}
-        scientificName={"sadf"}
-        image={null} // add image
-        description={null} // add description to muscle model
-      />
-      <MuscleItem
-        name={"herlo"}
-        scientificName={"sadf"}
-        image={null} // add image
-        description={null} // add description to muscle model
-      />
-      <MuscleItem
-        name={"herlo"}
-        scientificName={"sadf"}
-        image={null} // add image
-        description={null} // add description to muscle model
-      />
-      <MuscleItem
-        name={"herlo"}
-        scientificName={"sadf"}
-        image={null} // add image
-        description={null} // add description to muscle model
-      />
-      <MuscleItem
-        name={"herlo"}
-        scientificName={"sadf"}
-        image={null} // add image
-        description={null} // add description to muscle model
-      />
-    </div>
+    <>
+      <h1 className="container mx-auto font-semi-bold text-xl my-8 dark:text-white">
+        MUSCLES
+      </h1>
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 container mx-auto mb-20">
+        {muscles.map((muscle) => (
+          <MuscleItem
+            key={muscle._id}
+            name={muscle.name}
+            scientificName={muscle.scientificName}
+            image={null} // add image
+            description={null} // add description to muscle model
+          />
+        ))}
+      </div>
+    </>
   );
 }

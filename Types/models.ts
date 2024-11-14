@@ -2,7 +2,7 @@ export interface IExercise {
   _id: string;
   name: string;
   description: string;
-  muscle: string;
+  muscle: IMuscle;
   createdAt: Date;
   updatedAt: Date;
 }
