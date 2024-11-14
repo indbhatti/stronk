@@ -1,6 +1,6 @@
 import { getDecodedServerToken } from "@/serverActions/serverCookieUtils";
 import Navitem from "./navitem";
-import Theme from "./theme";
+import Theme from "../theme";
 import Hamburger from "./hamburger";
 
 export default async function Navbar() {

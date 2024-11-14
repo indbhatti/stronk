@@ -1,6 +1,6 @@
 import { getDecodedServerToken } from "@/serverActions/serverCookieUtils";
 import Navbar from "./navbar";
-import Logout from "./logout";
+import Logout from "../logout";
 import Link from "next/link";
 import Image from "next/image";
 

@@ -1,4 +1,5 @@
 "use client";
+import Theme from "@/app/theme";
 import { loginUser } from "@/serverActions/auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -129,6 +130,9 @@ export default function Login() {
             Register
           </Link>
         </p>
+      </div>
+      <div className="hidden">
+        <Theme />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import Theme from "./theme";
+import Theme from "../theme";
 import { UserJwtPayload } from "@/serverActions/serverCookieUtils";
 
 export default function Hamburger({
