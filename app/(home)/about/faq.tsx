@@ -1,7 +1,7 @@
 export default function Faq() {
   return (
     <div className="container mx-auto my-14">
-      <div className="space-y-4">
+      <div className="space-y-4 mx-4">
         <details
           className="group rounded-lg dark:bg-gray-900 bg-gray-100 p-6 [&_summary::-webkit-details-marker]:hidden"
           open
