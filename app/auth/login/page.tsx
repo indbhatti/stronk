@@ -1,9 +1,5 @@
 "use client";
 import { loginUser } from "@/serverActions/auth";
-import {
-  setRefreshTokenClient,
-  setTokenClient,
-} from "@/serverActions/cookieUtils";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -30,8 +26,6 @@ export default function Login() {
     if (user.email && user.password) {
       const res = await loginUser(user.email, user.password);
       if (res.status === 200) {
-        setTokenClient(res.token);
-        setRefreshTokenClient(res.refreshToken);
         router.push("/");
       } else if (res.status === 500) {
         setError(["Internal Server Error. Please try again later"]);

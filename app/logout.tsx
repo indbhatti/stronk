@@ -1,21 +1,11 @@
 "use client";
 
-import {
-  removeRefreshTokenClient,
-  removeTokenClient,
-} from "@/serverActions/cookieUtils";
-import {
-  removeRefreshTokenServer,
-  removeTokenServer,
-} from "@/serverActions/serverCookieUtils";
+import { logoutUser } from "@/serverActions/serverCookieUtils";
 import Link from "next/link";
 
 export default function Logout() {
   const logout = async () => {
-    removeTokenClient();
-    removeRefreshTokenClient();
-    removeRefreshTokenServer();
-    removeTokenServer();
+    logoutUser();
   };
   return (
     <div className="hidden sm:flex" onClick={logout}>

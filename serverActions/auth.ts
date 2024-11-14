@@ -1,7 +1,8 @@
 "use server";
 
 import { IUser } from "@/Types/models";
-import { getTokenServer } from "./serverCookieUtils";
+import { getRefreshTokenServer, getTokenServer } from "./serverCookieUtils";
+import { cookies } from "next/headers";
 
 export async function registerUser(
   username: string,
@@ -49,10 +50,20 @@ export async function loginUser(email: string, password: string) {
     const result = await response.json();
 
     if (response.ok) {
+      (await cookies()).set("token", result.token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+        path: "/",
+      });
+      (await cookies()).set("refreshToken", result.refreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+        path: "/",
+      });
       return {
         status: response.status,
-        token: result.token,
-        refreshToken: result.refreshToken,
       };
     }
     return { status: response.status, message: result.message };
@@ -62,23 +73,31 @@ export async function loginUser(email: string, password: string) {
   }
 }
 
-export async function refreshToken(refreshToken: string) {
+export async function refreshToken() {
   try {
+    const rtoken = await getRefreshTokenServer();
+    if (!rtoken) {
+      return { status: 401, message: "No refresh token provided" };
+    }
     const response = await fetch(`${process.env.API_URI}/refresh-token`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ refreshToken }),
+      body: JSON.stringify({ refreshToken: rtoken.value }),
     });
 
     const result = await response.json();
     console.log(result);
     if (response.ok) {
+      (await cookies()).set("token", result.newToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+        path: "/",
+      });
       return {
         status: response.status,
-        token: result.token,
-        refreshToken: result.refreshToken,
       };
     }
     return { status: response.status, message: result.message };
