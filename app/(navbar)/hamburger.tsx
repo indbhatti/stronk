@@ -69,13 +69,25 @@ export default function Hamburger({
           {decodedToken ? (
             <>
               <Link
-                href="#"
+                href="/muscles"
+                className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
+              >
+                Muscles
+              </Link>
+              <Link
+                href="/exercises"
+                className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
+              >
+                Exercises
+              </Link>
+              <Link
+                href="/workouts"
                 className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
               >
                 My Workouts
               </Link>
               <Link
-                href="#"
+                href="/schedule"
                 className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
               >
                 My Schedule
