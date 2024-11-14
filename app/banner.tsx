@@ -6,26 +6,26 @@ export default function Banner() {
       {" "}
       <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl pb-3">
+          <h1 className="bg-gradient-to-r from-indigo-600 via-black to-purple-600 dark:from-green-300 dark:via-blue-500 dark:to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl pb-3">
             Understand Muscle Growth.
             <span className="sm:block"> Increase Hypertrophy. </span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
+          <p className="dark:text-white text-black mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
             Join us on an adventure to understand muscle growth and increase
             hypertrophy.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
-              className="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+              className="block w-full rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
               href="/auth/register"
             >
               Get Started
             </Link>
 
             <Link
-              className="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+              className="dark:text-white text-black block w-full rounded border border-indigo-600 px-12 py-3 text-sm font-medium hover:bg-indigo-600 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto"
               href="/"
             >
               Learn More

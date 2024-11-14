@@ -1,5 +1,6 @@
 "use client";
 import { forgotPassword } from "@/serverActions/auth";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -58,7 +59,14 @@ export default function PasswordResetPage({
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <Image
+          className="mx-auto w-auto dark:invert"
+          src="/stronkFitness.png"
+          alt="fitness Icon"
+          width={500}
+          height={300}
+        />
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight dark:text-gray-300 text-gray-900">
           Reset Your Password
         </h2>
       </div>
@@ -69,7 +77,7 @@ export default function PasswordResetPage({
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300"
               >
                 Password
               </label>
@@ -89,7 +97,7 @@ export default function PasswordResetPage({
             <div className="flex items-center justify-between">
               <label
                 htmlFor="passwordConformation"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300"
               >
                 Password Conformation
               </label>

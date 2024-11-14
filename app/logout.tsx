@@ -10,7 +10,7 @@ export default function Logout() {
   return (
     <div className="hidden sm:flex" onClick={logout}>
       <Link
-        className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
+        className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-indigo-600"
         href="/"
       >
         Logout

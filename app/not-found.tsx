@@ -25,7 +25,8 @@ export default function Page() {
 
         <h1 className="mt-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Uh-oh!
-          <br /> Invalid Token
+          <br />
+          Page Not Found!
         </h1>
 
         <Link href="/">

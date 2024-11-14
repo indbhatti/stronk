@@ -1,4 +1,5 @@
 import Banner from "./banner";
+import Footer from "./footer";
 import Header from "./header";
 
 export default async function Home() {
@@ -6,6 +7,7 @@ export default async function Home() {
     <>
       <Header />
       <Banner />
+      <Footer />
     </>
   );
 }

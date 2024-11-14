@@ -1,7 +1,6 @@
 "use client";
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Theme() {
   const [isDark, setIsDark] = useState<boolean>(true);
@@ -26,10 +25,17 @@ export default function Theme() {
       onClick={handleClick}
       className="ml-5 xl:ml-0 dark:bg-goodOrange-200 hover:rotate-12 active:scale-90 duration-100 transition-all"
     >
-      <FontAwesomeIcon
-        icon={isDark ? faMoon : faSun}
-        className="dark:text-white"
-      />
+      {isDark ? (
+        <Image
+          src="night.svg"
+          alt="night"
+          width={20}
+          height={20}
+          className="invert"
+        />
+      ) : (
+        <Image src="day.svg" alt="day" width={20} height={20} />
+      )}
     </button>
   );
 }
