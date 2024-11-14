@@ -1,4 +1,5 @@
 import Navitem from "./navitem";
+import Theme from "./theme";
 
 export default function Navbar() {
   return (
@@ -8,6 +9,7 @@ export default function Navbar() {
         <Navitem href="#" text="About" />
         <Navitem href="#" text="My Workouts" />
         <Navitem href="#" text="My Schedule" />
+        <Theme />
       </ul>
     </nav>
   );
