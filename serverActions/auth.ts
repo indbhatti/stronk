@@ -108,3 +108,51 @@ export async function testAuth() {
     return { status: 500, message: "SERVER ERROR" };
   }
 }
+
+export async function forgotPassword(password: string, token: string) {
+  try {
+    const response = await fetch(`${process.env.API_URI}/forgot-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password, token }),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      return {
+        status: 200,
+      };
+    }
+    return { status: response.status, message: result.message };
+  } catch (error) {
+    console.error(error);
+    return { status: 500, message: "SERVER ERROR" };
+  }
+}
+
+export async function forgotPasswordEmail(email: string) {
+  try {
+    const response = await fetch(
+      `${process.env.API_URI}/forgot-password-email`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      }
+    );
+    if (response.ok) {
+      return {
+        status: 200,
+      };
+    }
+    const result = await response.json();
+    return { status: response.status, message: result.message };
+  } catch (error) {
+    console.error(error);
+    return { status: 500, message: "SERVER ERROR" };
+  }
+}
