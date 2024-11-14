@@ -25,15 +25,19 @@ export default async function Page() {
         MUSCLES
       </h1>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 container mx-auto mb-20">
-        {muscles.map((muscle) => (
-          <MuscleItem
-            key={muscle._id}
-            name={muscle.name}
-            scientificName={muscle.scientificName}
-            image={null} // add image
-            description={null} // add description to muscle model
-          />
-        ))}
+        {muscles ? (
+          muscles.map((muscle) => (
+            <MuscleItem
+              key={muscle._id}
+              name={muscle.name}
+              scientificName={muscle.scientificName}
+              image={null} // add image
+              description={null} // add description to muscle model
+            />
+          ))
+        ) : (
+          <p>Failed to fetch muscles</p>
+        )}
       </div>
     </>
   );

@@ -18,14 +18,14 @@ export default function Banner() {
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
-              className="block w-full rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+              className="block w-full rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent dark:hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto hover:text-black"
               href="/auth/register"
             >
               Get Started
             </Link>
 
             <Link
-              className="dark:text-white text-black block w-full rounded border border-indigo-600 px-12 py-3 text-sm font-medium hover:bg-indigo-600 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto"
+              className="dark:text-white text-black block w-full rounded border border-indigo-600 px-12 py-3 text-sm font-medium hover:bg-indigo-600 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto hover:text-white"
               href="/about"
             >
               Learn More
