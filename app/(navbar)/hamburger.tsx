@@ -53,7 +53,7 @@ export default function Hamburger({
         </svg>
       </button>
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 dark:bg-gray-900 bg-white border border-gray-800 rounded shadow-lg">
+        <div className="absolute right-0 mt-2 w-56 dark:bg-gray-950 bg-white border border-gray-800 rounded shadow-lg">
           <Link
             href="/"
             className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
@@ -61,7 +61,7 @@ export default function Hamburger({
             Home
           </Link>
           <Link
-            href="#"
+            href="/about"
             className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
           >
             About

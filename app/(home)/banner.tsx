@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Banner() {
   return (
-    <section className="dark:bg-gray-900 text-white">
+    <section className="dark:bg-gray-950 text-white">
       {" "}
       <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
         <div className="mx-auto max-w-3xl text-center">
@@ -26,7 +26,7 @@ export default function Banner() {
 
             <Link
               className="dark:text-white text-black block w-full rounded border border-indigo-600 px-12 py-3 text-sm font-medium hover:bg-indigo-600 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto"
-              href="/"
+              href="/about"
             >
               Learn More
             </Link>

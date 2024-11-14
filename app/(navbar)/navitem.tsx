@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Navitem({
   href,
   text,
@@ -7,13 +9,13 @@ export default function Navitem({
 }) {
   return (
     <li>
-      <a
+      <Link
         className="text-gray-500 transition hover:text-gray-500/75"
         href={href}
       >
         {" "}
         {text}{" "}
-      </a>
+      </Link>
     </li>
   );
 }

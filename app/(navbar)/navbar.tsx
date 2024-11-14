@@ -8,8 +8,8 @@ export default async function Navbar() {
   return (
     <nav aria-label="Global">
       <ul className="items-center gap-6 text-sm hidden md:flex">
-        <Navitem href="#" text="Home" />
-        <Navitem href="#" text="About" />
+        <Navitem href="/" text="Home" />
+        <Navitem href="/about" text="About" />
         {decodedToken ? (
           <>
             <Navitem href="#" text="My Workouts" />
