@@ -1,6 +1,6 @@
 "use server";
 
-import { IUser } from "@/Types/models";
+import { ISUser } from "@/Types/models";
 import { getRefreshTokenServer, getTokenServer } from "./serverCookieUtils";
 import { cookies } from "next/headers";
 
@@ -9,7 +9,7 @@ export async function registerUser(
   email: string,
   password: string
 ) {
-  const user: IUser = {
+  const user: ISUser = {
     username,
     email,
     password,
