@@ -2,6 +2,7 @@ import Image from "next/image";
 import LargeListItem from "./largeListItem";
 import LargeListDropDown from "./largeListdropDown";
 import Theme from "@/app/theme";
+import LogoutWrapper from "./logoutWrapper";
 
 export default function LargeSidebar() {
   return (
@@ -28,7 +29,9 @@ export default function LargeSidebar() {
           <LargeListDropDown title="Account">
             <LargeListItem title="Details" href="#" />
             <LargeListItem title="Security" href="#" />
-            <LargeListItem title="Logout" href="#" />
+            <LogoutWrapper>
+              <LargeListItem title="Logout" href="#" />
+            </LogoutWrapper>
           </LargeListDropDown>
         </ul>
         <Theme

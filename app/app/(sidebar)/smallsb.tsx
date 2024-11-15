@@ -1,12 +1,13 @@
 import Image from "next/image";
 import SmallListItem from "./smallListItem";
 import Theme from "@/app/theme";
+import LogoutWrapper from "./logoutWrapper";
 
 export default function SmallSidebar() {
   return (
     <div className="flex md:hidden h-screen w-16 flex-col justify-between dark:border-e-gray-950 border-e dark:bg-black bg-white">
       <div>
-        <div className="inline-flex size-16 items-center justify-center">
+        <div className="inline-flex size-16 items-center justify-center mt-4">
           <Image
             className="mx-auto w-auto dark:invert"
             src="/stronkFitness.png"
@@ -131,7 +132,7 @@ export default function SmallSidebar() {
         </div>
       </div>
 
-      <div className="sticky inset-x-0 bottom-0 border-t dark:border-gray-800 dark:bg-black border-gray-100 bg-white p-2">
+      <LogoutWrapper className="sticky inset-x-0 bottom-0 border-t dark:border-gray-800 dark:bg-black border-gray-100 bg-white p-2">
         <form action="#">
           <button
             type="submit"
@@ -160,7 +161,7 @@ export default function SmallSidebar() {
             </span>
           </button>
         </form>
-      </div>
+      </LogoutWrapper>
     </div>
   );
 }
