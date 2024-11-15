@@ -25,11 +25,9 @@ export default function ExerciseItem({
           {muscle}
         </p>
 
-        <p>
-          <h3 className="mt-0.5 text-lg dark:text-gray-100 text-gray-900">
-            {name}
-          </h3>
-        </p>
+        <h3 className="mt-0.5 text-lg dark:text-gray-100 text-gray-900">
+          {name}
+        </h3>
 
         <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
           {description}

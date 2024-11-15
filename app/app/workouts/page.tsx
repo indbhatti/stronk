@@ -8,7 +8,7 @@ export default async function Page() {
   }
   return (
     <>
-      <>hello</>
+      <div className=" container mx-auto text-white">asdf</div>
     </>
   );
 }

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function Theme() {
+export default function Theme({ className }: { className?: string }) {
   const [isDark, setIsDark] = useState<boolean>(true);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Theme() {
   return (
     <button
       onClick={handleClick}
-      className="ml-5 xl:ml-0 dark:bg-goodOrange-200 hover:rotate-12 active:scale-90 duration-100 transition-all"
+      className={`hover:rotate-12 active:scale-90 duration-100 transition-all ${className}`}
     >
       <Image
         src={isDark ? "night.svg" : "day.svg"}

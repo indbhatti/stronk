@@ -10,12 +10,11 @@ export default async function Navbar() {
       <ul className="items-center gap-6 text-sm hidden md:flex">
         <Navitem href="/" text="Home" />
         <Navitem href="/about" text="About" />
-        <Navitem href="/muscles" text="Muscles" />
-        <Navitem href="/exercises" text="Exercises" />
+        <Navitem href="/contact" text="Contact" />
+        <Navitem href="/blog" text="Blog" />
         {decodedToken ? (
           <>
-            <Navitem href="/workouts" text="My Workouts" />
-            <Navitem href="/schedule" text="My Schedule" />
+            <Navitem href="/app" text="App" />
           </>
         ) : (
           <></>
