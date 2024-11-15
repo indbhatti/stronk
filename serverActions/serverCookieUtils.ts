@@ -1,6 +1,7 @@
 "use server";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import { NextRequest } from "next/server";
 
 // Server-side cookie utils
 export interface UserJwtPayload extends jwt.JwtPayload {
@@ -8,6 +9,25 @@ export interface UserJwtPayload extends jwt.JwtPayload {
   email: string;
   accessLevel: number;
 }
+
+export const getToken = async (req: NextRequest) => {
+  const token = req.cookies.get("token")?.value;
+  if (!token) {
+    return null;
+  }
+
+  const response = await fetch(`${process.env.API_URI}/user/verify`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ token }),
+  });
+  if (response.ok) {
+    return token;
+  }
+  return null;
+};
 
 export const getTokenServer = async () => {
   const cookieStore = cookies();

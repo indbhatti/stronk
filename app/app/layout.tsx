@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <>
       <Sidebar />
-      <div className="md:ml-[300] ml-16">{children}</div>
+      <div className="md:ml-[300px] ml-16">{children}</div>
     </>
   );
 }
