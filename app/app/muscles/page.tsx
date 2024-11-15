@@ -21,10 +21,10 @@ export default async function Page() {
   const muscles: IMuscle[] = await getMuscles();
   return (
     <div>
-      <h1 className="container mx-auto text-end font-semi-bold text-4xl my-8 dark:text-white font-black">
+      <h1 className="container mx-auto text-end font-semi-bold text-4xl my-8 dark:text-white font-black px-10">
         MUSCLES
       </h1>
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 container mx-auto mb-20">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 container mx-auto mb-20 px-10">
         {muscles ? (
           muscles.map((muscle) => (
             <MuscleItem
@@ -42,7 +42,7 @@ export default async function Page() {
           name={"he"}
           scientificName={"hsdf"}
           image={null} // add image
-          description={null} // add description to muscle model
+          description={"ds s sdfsd fsd fsdfsdf sd sd sadf hsd fsahdf sdahf"} // add description to muscle model
         />
         <MuscleItem
           name={"he"}
@@ -54,7 +54,7 @@ export default async function Page() {
           name={"he"}
           scientificName={"hsdf"}
           image={null} // add image
-          description={null} // add description to muscle model
+          description={"hsdahfhdsh"} // add description to muscle model
         />
         <MuscleItem
           name={"he"}

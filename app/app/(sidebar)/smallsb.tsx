@@ -21,7 +21,7 @@ export default function SmallSidebar() {
           <div className="px-2">
             <SmallListItem
               title="General"
-              href="#"
+              href="/app"
               svg={
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -46,8 +46,8 @@ export default function SmallSidebar() {
             />
             <ul className="space-y-1 border-t dark:border-gray-700 border-gray-100 pt-4">
               <SmallListItem
-                title="Teams"
-                href="#"
+                title="Workouts"
+                href="/app/workouts"
                 svg={
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -66,8 +66,8 @@ export default function SmallSidebar() {
                 }
               />
               <SmallListItem
-                title="Billing"
-                href="#"
+                title="Schedule"
+                href="/app/schedule"
                 svg={
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

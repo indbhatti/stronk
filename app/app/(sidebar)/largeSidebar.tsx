@@ -23,12 +23,10 @@ export default function LargeSidebar() {
             <LargeListItem title="All Exercises" href="/app/exercises" />
           </LargeListDropDown>
 
-          <LargeListItem title="My Workouts" href="#" />
-          <LargeListItem title="My Schedule" href="#" />
+          <LargeListItem title="My Workouts" href="/app/workouts" />
+          <LargeListItem title="My Schedule" href="/app/schedule" />
 
           <LargeListDropDown title="Account">
-            <LargeListItem title="Details" href="#" />
-            <LargeListItem title="Security" href="#" />
             <LogoutWrapper>
               <LargeListItem title="Logout" href="#" />
             </LogoutWrapper>

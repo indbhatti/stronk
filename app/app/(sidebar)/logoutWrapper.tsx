@@ -1,6 +1,7 @@
 "use client";
 
 import { logoutUser } from "@/serverActions/serverCookieUtils";
+import { useRouter } from "next/navigation";
 
 export default function LogoutWrapper({
   children,
@@ -9,8 +10,11 @@ export default function LogoutWrapper({
   children: React.ReactNode;
   className?: string;
 }) {
-  const handleClick = () => {
-    logoutUser();
+  const router = useRouter();
+  const handleClick = async () => {
+    if (await logoutUser()) {
+      router.push("/");
+    }
   };
 
   return (
