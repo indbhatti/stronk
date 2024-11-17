@@ -1,7 +1,9 @@
 import { getDecodedServerToken } from "@/serverActions/serverCookieUtils";
 import Dashboard from "./dashboard";
+import { Suspense } from "react";
+import Loading from "../loading";
 
-export default async function App() {
+async function CreateApp() {
   const decodedToken = await getDecodedServerToken();
   return (
     <>
@@ -14,5 +16,13 @@ export default async function App() {
       </h1>
       <Dashboard />
     </>
+  );
+}
+
+export default function () {
+  return (
+    <Suspense fallback={<Loading />}>
+      <CreateApp />
+    </Suspense>
   );
 }
