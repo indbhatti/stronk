@@ -2,7 +2,7 @@
 
 import { addWorkout } from "@/serverActions/workout";
 import { useState } from "react";
-import Popup, { PopupProps } from "../popup";
+import Popup, { PopupProps } from "../workouts/popup";
 import { useRouter } from "next/navigation";
 import K from "@/Utility/constants";
 
@@ -24,7 +24,6 @@ export default function Page() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 10000));
     if (workout.name === "" || workout.description === "") {
       setPopup({
         title: "Error",
@@ -39,6 +38,7 @@ export default function Page() {
         },
         buttonType: "danger",
       });
+      setLoading(false);
       return;
     }
     if (await addWorkout(workout.name, workout.description)) {
@@ -81,16 +81,17 @@ export default function Page() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-lg">
-        <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
-          Add Workout
-        </h1>
+    <>
+      <h1 className="container mx-auto text-end font-semi-bold text-4xl my-8 dark:text-white font-black px-10">
+        Add Workout
+      </h1>
+      <div className="flex justify-center w-full">
         <form
           onSubmit={handleSubmit}
-          className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 dark:bg-black dark:shadow-gray-900"
+          className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 dark:bg-black
+           dark:shadow-gray-900 max-w-[1000px] w-full mx-10"
         >
-          <div>
+          <div className="w-full py-4">
             <label htmlFor="name" className="sr-only">
               name
             </label>
@@ -99,21 +100,21 @@ export default function Page() {
               <input
                 type="text"
                 name="name"
-                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                className="bg-transparent border-0 text-xl w-full rounded-lg dark:text-white"
                 placeholder="Enter workout name"
                 onChange={handleChange}
               />
             </div>
           </div>
 
-          <div>
+          <div className="w-full py-4">
             <label htmlFor="description" className="sr-only">
               Description
             </label>
 
             <div className="relative">
               <textarea
-                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                className="border-0 text-xl bg-transparent w-full rounded-lg dark:text-white"
                 name="description"
                 rows={4}
                 placeholder="Enter descirption"
@@ -130,18 +131,18 @@ export default function Page() {
             {loading ? "Adding..." : "Add"}
           </button>
         </form>
+        {popup.buttonType && (
+          <Popup
+            title={popup.title}
+            message={popup.message}
+            onConfirmMessage={popup.onConfirmMessage}
+            onCancelMessage={popup.onCancelMessage}
+            onConfirm={popup.onConfirm}
+            onCancel={popup.onCancel}
+            buttonType={popup.buttonType}
+          />
+        )}
       </div>
-      {popup.buttonType && (
-        <Popup
-          title={popup.title}
-          message={popup.message}
-          onConfirmMessage={popup.onConfirmMessage}
-          onCancelMessage={popup.onCancelMessage}
-          onConfirm={popup.onConfirm}
-          onCancel={popup.onCancel}
-          buttonType={popup.buttonType}
-        />
-      )}
-    </div>
+    </>
   );
 }

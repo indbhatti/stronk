@@ -1,11 +1,11 @@
 import { getWorkouts } from "@/serverActions/workout";
-import Card from "../card";
+import Card from "../../card";
 import { IWorkout } from "@/Types/models";
 import K from "@/Utility/constants";
 import Link from "next/link";
 
 export default async function Page() {
-  const workouts: IWorkout[] = await getWorkouts();
+  const workouts: IWorkout[] | null = await getWorkouts();
   return (
     <>
       <div className="flex justify-between my-8 px-10">
@@ -24,7 +24,7 @@ export default async function Page() {
                 title={workout.name}
                 subTitle={new Date(workout.createdAt).toLocaleDateString()}
                 image={null} // add image
-                description={null} // add description to muscle model
+                description={workout.description} // add description to muscle model
               />
             </Link>
           ))

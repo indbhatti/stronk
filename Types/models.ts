@@ -30,6 +30,7 @@ export interface IUser {
 export interface IWorkout {
   _id: string;
   name: string;
+  description: string;
   createdAt: Date;
   createdBy: string;
 }

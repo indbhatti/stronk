@@ -169,6 +169,7 @@ export async function forgotPasswordEmail(email: string) {
     if (response.ok) {
       return {
         status: 200,
+        message: "Email sent",
       };
     }
     const result = await response.json();

@@ -1,6 +1,9 @@
 "use server";
 
+import { IWorkout } from "@/Types/models";
 import { fetchWithRetry } from "./fetch";
+import { revalidatePath } from "next/cache";
+import K from "@/Utility/constants";
 
 export const getWorkouts = async () => {
   const response = await fetchWithRetry(`${process.env.API_URI}/workout`, {
@@ -10,8 +13,7 @@ export const getWorkouts = async () => {
     console.error("Failed to fetch workouts");
     return null;
   }
-  const data = await response.json();
-  console.log(data);
+  const data: IWorkout[] = await response.json();
 
   return data;
 };
@@ -28,8 +30,42 @@ export const addWorkout = async (name: string, description: string) => {
     console.error("Failed to add workout");
     return null;
   }
-  const data = await response.json();
-  console.log(data);
+  const data: IWorkout = await response.json();
 
   return data;
+};
+
+export const getWorkout = async (workoutId: String) => {
+  const response = await fetchWithRetry(
+    `${process.env.API_URI}/workout/${workoutId}`,
+    {
+      method: "GET",
+    }
+  );
+  if (response.status !== 200) {
+    console.log("Failed to fetch workout");
+    return null;
+  }
+  const data: IWorkout = await response.json();
+
+  return data;
+};
+
+export const editWorkoutName = async (workoutId: string, name: string) => {
+  const response = await fetchWithRetry(
+    `${process.env.API_URI}/workout/${workoutId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name }),
+    }
+  );
+  if (response.status !== 200) {
+    console.error("Failed to edit workout name");
+    return false;
+  }
+  revalidatePath(K.Links.Workouts);
+  return true;
 };

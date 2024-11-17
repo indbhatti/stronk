@@ -9,7 +9,7 @@ const K = {
     Dashboard: "/app",
     Muscles: "/app/muscles",
     Workouts: "/app/workouts",
-    AddWorkout: "/app/workouts/add",
+    AddWorkout: "/app/add-workout",
     Exercises: "/app/exercises",
     Schedule: "/app/schedule",
     // Profile: "/profile",
