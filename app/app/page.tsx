@@ -19,7 +19,7 @@ async function CreateApp() {
   );
 }
 
-export default function () {
+export default function Page() {
   return (
     <Suspense fallback={<Loading />}>
       <CreateApp />
