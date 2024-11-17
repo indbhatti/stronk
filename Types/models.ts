@@ -30,8 +30,7 @@ export interface IUser {
 export interface IWorkout {
   _id: string;
   name: string;
-  duration: number; // duration in minutes
-  date: Date;
+  createdAt: Date;
   createdBy: string;
 }
 

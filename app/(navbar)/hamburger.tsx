@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Theme from "../theme";
 import { UserJwtPayload } from "@/serverActions/serverCookieUtils";
+import K from "@/Utility/constants";
 
 export default function Hamburger({
   decodedToken,
@@ -55,25 +56,25 @@ export default function Hamburger({
       {isOpen && (
         <div className="absolute right-0 mt-2 w-56 dark:bg-gray-950 bg-white border border-gray-800 rounded shadow-lg">
           <Link
-            href="/"
+            href={K.Links.Home}
             className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
           >
             Home
           </Link>
           <Link
-            href="/about"
+            href={K.Links.About}
             className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
           >
             About
           </Link>
           <Link
-            href="/contact"
+            href={K.Links.Contact}
             className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
           >
             Contact
           </Link>
           <Link
-            href="/Blog"
+            href={K.Links.Blog}
             className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
           >
             Blog
@@ -81,7 +82,7 @@ export default function Hamburger({
           {decodedToken ? (
             <>
               <Link
-                href="/app"
+                href={K.Links.Dashboard}
                 className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
               >
                 App

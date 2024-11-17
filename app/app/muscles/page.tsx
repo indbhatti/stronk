@@ -1,6 +1,6 @@
 import { fetchWithRetry } from "@/serverActions/fetch";
 import { IMuscle } from "@/Types/models";
-import MuscleItem from "./item";
+import Card from "../card";
 
 const getMuscles = async () => {
   "use server";
@@ -27,10 +27,10 @@ export default async function Page() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 container mx-auto mb-20 px-10">
         {muscles ? (
           muscles.map((muscle) => (
-            <MuscleItem
+            <Card
               key={muscle._id}
-              name={muscle.name}
-              scientificName={muscle.scientificName}
+              title={muscle.name}
+              subTitle={muscle.scientificName}
               image={null} // add image
               description={null} // add description to muscle model
             />
@@ -38,60 +38,6 @@ export default async function Page() {
         ) : (
           <p>Failed to fetch muscles</p>
         )}
-        <MuscleItem
-          name={"he"}
-          scientificName={"hsdf"}
-          image={null} // add image
-          description={"ds s sdfsd fsd fsdfsdf sd sd sadf hsd fsahdf sdahf"} // add description to muscle model
-        />
-        <MuscleItem
-          name={"he"}
-          scientificName={"hsdf"}
-          image={null} // add image
-          description={null} // add description to muscle model
-        />
-        <MuscleItem
-          name={"he"}
-          scientificName={"hsdf"}
-          image={null} // add image
-          description={"hsdahfhdsh"} // add description to muscle model
-        />
-        <MuscleItem
-          name={"he"}
-          scientificName={"hsdf"}
-          image={null} // add image
-          description={null} // add description to muscle model
-        />
-        <MuscleItem
-          name={"he"}
-          scientificName={"hsdf"}
-          image={null} // add image
-          description={null} // add description to muscle model
-        />
-        <MuscleItem
-          name={"he"}
-          scientificName={"hsdf"}
-          image={null} // add image
-          description={null} // add description to muscle model
-        />
-        <MuscleItem
-          name={"he"}
-          scientificName={"hsdf"}
-          image={null} // add image
-          description={null} // add description to muscle model
-        />
-        <MuscleItem
-          name={"he"}
-          scientificName={"hsdf"}
-          image={null} // add image
-          description={null} // add description to muscle model
-        />
-        <MuscleItem
-          name={"he"}
-          scientificName={"hsdf"}
-          image={null} // add image
-          description={null} // add description to muscle model
-        />
       </div>
     </div>
   );

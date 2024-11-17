@@ -4,7 +4,6 @@ import { getToken } from "@/serverActions/serverCookieUtils";
 
 export async function middleware(req: NextRequest) {
   const token = await getToken(req);
-  console.log(token);
 
   if (!token) {
     const loginUrl = new URL("/auth/login", req.url);

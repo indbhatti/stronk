@@ -86,9 +86,12 @@ export async function refreshToken() {
       },
       body: JSON.stringify({ refreshToken: rtoken.value }),
     });
+    if (response.status === 401) {
+      (await cookies()).delete("token");
+      (await cookies()).delete("refreshToken");
+    }
 
     const result = await response.json();
-    console.log(result);
     if (response.ok) {
       (await cookies()).set("token", result.newToken, {
         httpOnly: true,

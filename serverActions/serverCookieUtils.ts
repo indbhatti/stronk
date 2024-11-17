@@ -2,6 +2,7 @@
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
+import { refreshToken } from "./auth";
 
 // Server-side cookie utils
 export interface UserJwtPayload extends jwt.JwtPayload {
@@ -15,18 +16,40 @@ export const getToken = async (req: NextRequest) => {
   if (!token) {
     return null;
   }
+  try {
+    const url = `${process.env.API_URI}/user/verify`;
+    let response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token }),
+    });
 
-  const response = await fetch(`${process.env.API_URI}/user/verify`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ token }),
-  });
-  if (response.ok) {
-    return token;
+    // If access token is expired, refresh the token and retry
+    if (response.status === 401) {
+      const tokenRefreshed = await refreshToken();
+      const newToken = (await getTokenServer())?.value;
+
+      if (tokenRefreshed) {
+        // Retry the request with a new token
+        response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token: newToken }),
+        });
+      }
+    }
+    if (response.ok) {
+      return token;
+    }
+    return null;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
-  return null;
 };
 
 export const getTokenServer = async () => {

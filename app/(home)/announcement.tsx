@@ -1,3 +1,4 @@
+import K from "@/Utility/constants";
 import Link from "next/link";
 
 export default function Announcement() {
@@ -16,7 +17,7 @@ export default function Announcement() {
           </div>
 
           <div className="flex items-center gap-4">
-            <Link href="/app">
+            <Link href={K.Links.Dashboard}>
               <button
                 className="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:outline-none focus:ring"
                 type="button"

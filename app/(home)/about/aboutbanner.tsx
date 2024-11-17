@@ -1,3 +1,4 @@
+import K from "@/Utility/constants";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,7 +22,7 @@ export default function AboutBanner() {
 
               <div className="mt-4 md:mt-8">
                 <Link
-                  href="/auth/register"
+                  href={K.Links.Register}
                   className="inline-block rounded border border-white bg-white px-12 py-3 text-sm font-medium text-indigo-700 transition hover:bg-transparent hover:text-white focus:outline-none focus:ring focus:ring-yellow-400"
                 >
                   Get Started

@@ -1,8 +1,9 @@
 import { getDecodedServerToken } from "@/serverActions/serverCookieUtils";
 import Navbar from "./navbar";
-import Logout from "../logout";
 import Link from "next/link";
 import Image from "next/image";
+import K from "@/Utility/constants";
+import LogoutWrapper from "../logoutWrapper";
 
 export default async function Header() {
   const decodedToken = await getDecodedServerToken();
@@ -29,20 +30,27 @@ export default async function Header() {
               <div>
                 <Link
                   className="rounded-md bg-indigo-600 px-5 py-2.5 mx-2 text-sm font-medium text-white shadow"
-                  href="/auth/login"
+                  href={K.Links.Login}
                 >
                   Login
                 </Link>
 
                 <Link
                   className="rounded-md bg-gray-200 dark:bg-gray-100 px-5 py-2.5 ml-2 text-sm font-medium text-indigo-600"
-                  href="/auth/register"
+                  href={K.Links.Register}
                 >
                   Register
                 </Link>
               </div>
             ) : (
-              <Logout />
+              <LogoutWrapper className="hidden sm:flex">
+                <Link
+                  className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-indigo-600"
+                  href="/"
+                >
+                  Logout
+                </Link>
+              </LogoutWrapper>
             )}
           </div>
         </div>

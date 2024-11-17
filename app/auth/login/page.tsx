@@ -13,6 +13,7 @@ export default function Login() {
     password: "",
   });
   const [errors, setError] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser({
@@ -23,6 +24,7 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     if (user.email && user.password) {
       const res = await loginUser(user.email, user.password);
@@ -34,8 +36,11 @@ export default function Login() {
         setError(["Email not verified"]);
       } else if (res.status === 401) {
         setError(["Invalid credentials"]);
+      } else if (res.status === 404) {
+        setError(["User not found"]);
       }
     }
+    setLoading(false);
   };
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -114,9 +119,10 @@ export default function Login() {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              disabled={loading}
+              className="disabled:bg-gray-700 disabled:border-gray-700 flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Sign in
+              {loading ? "Signing in..." : "Sign in"}
             </button>
           </div>
         </form>

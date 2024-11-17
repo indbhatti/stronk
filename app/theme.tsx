@@ -10,12 +10,16 @@ export default function Theme({ className }: { className?: string }) {
     if (savedTheme) {
       document.body.classList.toggle("dark", savedTheme === "dark");
       setIsDark(savedTheme === "dark");
+    } else {
+      // if no theme is saved, defualt to dark
+      document.body.classList.toggle("dark");
+      setIsDark(true);
     }
   }, []);
 
   const handleClick = () => {
     const newTheme = isDark ? "light" : "dark";
-    document.body.classList.toggle("dark");
+    document.body.classList.toggle("dark", newTheme === "dark");
     setIsDark(!isDark);
 
     localStorage.setItem("theme", newTheme);
@@ -26,8 +30,8 @@ export default function Theme({ className }: { className?: string }) {
       className={`hover:rotate-12 active:scale-90 duration-100 transition-all ${className}`}
     >
       <Image
-        src={isDark ? "night.svg" : "day.svg"}
-        alt="night"
+        src={isDark ? "/night.svg" : "/day.svg"}
+        alt="theme"
         width={20}
         height={20}
         className={isDark ? "invert" : ""}

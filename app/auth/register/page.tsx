@@ -15,6 +15,7 @@ export default function Register() {
     password_confirmation: "",
   });
   const [errors, setError] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -24,7 +25,9 @@ export default function Register() {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     e.preventDefault();
+    // create a temp wait time
     const temperrors: string[] = [];
     if (formData.password !== formData.password_confirmation) {
       temperrors.push("Passwords do not match");
@@ -52,6 +55,7 @@ export default function Register() {
         setError(["User already exists"]);
       }
     }
+    setLoading(false);
   };
 
   return (
@@ -170,10 +174,11 @@ export default function Register() {
               </div>
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                 <button
-                  className="inline-block shrink-0 rounded-md border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                  className="disabled:bg-gray-700 disabled:border-gray-700 Anline-block shrink-0 rounded-md border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                  disabled={loading}
                   type="submit"
                 >
-                  Create an account
+                  {loading ? "Loading" : "Create an account"}
                 </button>
 
                 <p className="mt-4 text-sm text-gray-500 dark:text-gray-100 sm:mt-0">

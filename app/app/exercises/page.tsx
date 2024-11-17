@@ -1,5 +1,5 @@
 import { fetchWithRetry } from "@/serverActions/fetch";
-import ExerciseItem from "./item";
+import Card from "../card";
 import { IExercise } from "@/Types/models";
 
 const getExercises = async () => {
@@ -27,10 +27,10 @@ export default async function Page() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 container mx-auto mb-20">
         {exercises ? (
           exercises.map((exercise) => (
-            <ExerciseItem
+            <Card
               key={exercise._id}
-              name={exercise.name}
-              muscle={exercise.muscle.name}
+              title={exercise.name}
+              subTitle={exercise.muscle.name}
               image={null} // add image
               description={exercise.description} // add description to muscle model
             />
