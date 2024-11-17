@@ -1,5 +1,3 @@
-import UpcomingItem from "./(upcoming)/upcomingItem";
-
 export default function Dashboard() {
   return (
     <div className="px-4">
@@ -10,11 +8,6 @@ export default function Dashboard() {
         <h1 className="border-gray-500 border-r h-full text-lg font-black text-center flex items-center px-4">
           UPCOMING <br /> WORKOUTS
         </h1>
-        <UpcomingItem title="Legs" />
-        <UpcomingItem title="Legs" />
-        <UpcomingItem title="Legs" />
-        <UpcomingItem title="Legs" />
-        <UpcomingItem title="Legs" />
       </div>
     </div>
   );

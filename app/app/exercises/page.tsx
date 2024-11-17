@@ -1,6 +1,8 @@
 import { fetchWithRetry } from "@/serverActions/fetch";
 import Card from "../card";
 import { IExercise } from "@/Types/models";
+import { Suspense } from "react";
+import Loading from "@/app/loading";
 
 const getExercises = async () => {
   "use server";
@@ -17,7 +19,7 @@ const getExercises = async () => {
   return data;
 };
 
-export default async function Page() {
+async function Exercise() {
   const exercises: IExercise[] = await getExercises();
   return (
     <>
@@ -39,6 +41,19 @@ export default async function Page() {
           <p>Failed to Fetch Exercises</p>
         )}
       </div>
+    </>
+  );
+}
+
+export default function Page() {
+  return (
+    <>
+      <h1 className="container mx-auto text-end font-semi-bold text-4xl my-8 dark:text-white font-black px-10">
+        EXERCISES
+      </h1>
+      <Suspense fallback={<Loading />}>
+        <Exercise />
+      </Suspense>
     </>
   );
 }

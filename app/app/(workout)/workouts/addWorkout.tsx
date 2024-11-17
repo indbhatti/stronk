@@ -91,7 +91,7 @@ export default function AddWorkout() {
         onClick={() => setIsOpen(true)}
         className="rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
       >
-        Add +
+        Add Workout
       </button>
 
       <div

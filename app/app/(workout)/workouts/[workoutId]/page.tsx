@@ -4,11 +4,13 @@ import K from "@/Utility/constants";
 import { redirect } from "next/navigation";
 import WorkoutName from "./workoutName";
 import WorkoutDescription from "./workoutDescription";
-import ExerciseTable from "./exerciseTable";
 import ExerciseTableCell from "./exerciseTableCell";
 import AddWorkoutExercise from "./addWorkoutExercise";
+import Table from "../../../table";
+import { Suspense } from "react";
+import Loading from "@/app/loading";
 
-export default async function Page({
+async function WorkoutExercise({
   params,
 }: {
   params: Promise<{ workoutId: string }>;
@@ -18,7 +20,6 @@ export default async function Page({
   if (!workout) {
     redirect(K.Links.Workouts);
   }
-  console.log(workout);
   return (
     <>
       <WorkoutName workoutId={workoutId} name={workout.name} />
@@ -26,7 +27,7 @@ export default async function Page({
         workoutId={workoutId}
         description={workout.description}
       />
-      <ExerciseTable>
+      <Table headings={["Name", "Description", "Muscle", "Sets", "Link"]}>
         {workout.workoutExercises.map((exercise) => (
           <ExerciseTableCell
             key={exercise._id}
@@ -45,10 +46,24 @@ export default async function Page({
         ) : (
           <></>
         )}
-      </ExerciseTable>
+      </Table>
       <div className="flex justify-end px-10">
         <AddWorkoutExercise workoutId={workoutId} />
       </div>
+    </>
+  );
+}
+
+export default function Page({
+  params,
+}: {
+  params: Promise<{ workoutId: string }>;
+}) {
+  return (
+    <>
+      <Suspense fallback={<Loading />}>
+        <WorkoutExercise params={params} />
+      </Suspense>
     </>
   );
 }
