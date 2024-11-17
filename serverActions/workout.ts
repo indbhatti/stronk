@@ -60,8 +60,6 @@ export const editWorkout = async (
   workoutId: string,
   updateFields: EditWorkout
 ) => {
-  console.log(updateFields);
-  return true;
   const response = await fetchWithRetry(
     `${process.env.API_URI}/workout/${workoutId}`,
     {
