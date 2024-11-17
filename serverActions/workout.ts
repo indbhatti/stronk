@@ -51,7 +51,17 @@ export const getWorkout = async (workoutId: String) => {
   return data;
 };
 
-export const editWorkoutName = async (workoutId: string, name: string) => {
+interface EditWorkout {
+  name?: string;
+  description?: string;
+}
+
+export const editWorkout = async (
+  workoutId: string,
+  updateFields: EditWorkout
+) => {
+  console.log(updateFields);
+  return true;
   const response = await fetchWithRetry(
     `${process.env.API_URI}/workout/${workoutId}`,
     {
@@ -59,7 +69,7 @@ export const editWorkoutName = async (workoutId: string, name: string) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name }),
+      body: JSON.stringify(updateFields),
     }
   );
   if (response.status !== 200) {

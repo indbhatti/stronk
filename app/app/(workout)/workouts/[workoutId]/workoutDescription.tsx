@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { editWorkout } from "@/serverActions/workout";
 import { useEffect, useState } from "react";
 
 export default function WorkoutDescription({
@@ -13,7 +13,6 @@ export default function WorkoutDescription({
   const [workoutDescription, setWorkoutDescription] = useState(description);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setWorkoutDescription(e.target.value);
@@ -22,12 +21,9 @@ export default function WorkoutDescription({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    if (true) {
+    if (await editWorkout(workoutId, { description: workoutDescription })) {
       setIsEditing(false);
     }
-    // if (await editWorkoutDescription(workoutId, workoutDescription)) {
-    //   setIsEditing(false);
-    // }
     setLoading(false);
   };
 
@@ -64,7 +60,7 @@ export default function WorkoutDescription({
                 width={20}
                 height={20}
                 className="dark:invert ml-2 hidden"
-                onClick={(e) => {
+                onClick={() => {
                   setIsEditing(true);
                 }}
               >
@@ -94,7 +90,7 @@ export default function WorkoutDescription({
               </svg>
             </div>
             <div
-              onClick={(e) => {
+              onClick={() => {
                 setIsEditing(true);
               }}
               className="text-xl p-2"

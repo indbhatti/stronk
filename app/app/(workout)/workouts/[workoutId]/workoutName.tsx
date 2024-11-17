@@ -1,7 +1,6 @@
 "use client";
 
-import { editWorkoutName } from "@/serverActions/workout";
-import { useRouter } from "next/navigation";
+import { editWorkout } from "@/serverActions/workout";
 import { useEffect, useState } from "react";
 
 export default function WorkoutName({
@@ -14,7 +13,6 @@ export default function WorkoutName({
   const [workoutName, setWorkoutName] = useState(name);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWorkoutName(e.target.value);
@@ -23,7 +21,7 @@ export default function WorkoutName({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    if (await editWorkoutName(workoutId, workoutName)) {
+    if (await editWorkout(workoutId, { name: workoutName })) {
       setIsEditing(false);
     }
     setLoading(false);
