@@ -3,15 +3,14 @@ import Card from "../../card";
 import { IWorkout } from "@/Types/models";
 import K from "@/Utility/constants";
 import Link from "next/link";
+import AddWorkout from "./addWorkout";
 
 export default async function Page() {
   const workouts: IWorkout[] | null = await getWorkouts();
   return (
     <>
       <div className="flex justify-between my-8 px-10">
-        <Link href={K.Links.AddWorkout}>
-          <button className="text-white">Add Workout</button>
-        </Link>
+        <AddWorkout />
         <h1 className="text-end font-semi-bold text-4xl dark:text-white font-black">
           MY WORKOUTS {workouts ? workouts.length : 0}
         </h1>

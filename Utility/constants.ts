@@ -12,12 +12,17 @@ const K = {
     AddWorkout: "/app/add-workout",
     Exercises: "/app/exercises",
     Schedule: "/app/schedule",
+    WorkoutExercise: "/app/workout-exercise",
     // Profile: "/profile",
     // AddExercise: "/app/add-exercise",
     // EditExercise: "/edit-exercise",
     // EditWorkout: "/edit-workout",
     // Workout: "/workout",
     // NotFound: "/not-found",
+  },
+  Tags: {
+    Workouts: "workouts",
+    Workout: "workout",
   },
 };
 

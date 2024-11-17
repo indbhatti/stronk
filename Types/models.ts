@@ -31,6 +31,7 @@ export interface IWorkout {
   _id: string;
   name: string;
   description: string;
+  workoutExercises: IWorkoutExercise[];
   createdAt: Date;
   createdBy: string;
 }
@@ -38,7 +39,7 @@ export interface IWorkout {
 export interface IWorkoutExercise {
   _id: string;
   workout: string;
-  exercise: string;
+  exercise: IExercise;
   sets: ISet[];
 }
 

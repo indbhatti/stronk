@@ -4,6 +4,9 @@ import K from "@/Utility/constants";
 import { redirect } from "next/navigation";
 import WorkoutName from "./workoutName";
 import WorkoutDescription from "./workoutDescription";
+import ExerciseTable from "./exerciseTable";
+import ExerciseTableCell from "./exerciseTableCell";
+import AddWorkoutExercise from "./addWorkoutExercise";
 
 export default async function Page({
   params,
@@ -15,6 +18,7 @@ export default async function Page({
   if (!workout) {
     redirect(K.Links.Workouts);
   }
+  console.log(workout);
   return (
     <>
       <WorkoutName workoutId={workoutId} name={workout.name} />
@@ -22,6 +26,29 @@ export default async function Page({
         workoutId={workoutId}
         description={workout.description}
       />
+      <ExerciseTable>
+        {workout.workoutExercises.map((exercise) => (
+          <ExerciseTableCell
+            key={exercise._id}
+            name={exercise.exercise.name}
+            description={exercise.exercise.description}
+            muscle={exercise.exercise.muscle.name}
+            sets={exercise.sets}
+          />
+        ))}
+        {workout.workoutExercises.length === 0 ? (
+          <tr>
+            <td colSpan={5} className="text-center py-5">
+              No Exercises
+            </td>
+          </tr>
+        ) : (
+          <></>
+        )}
+      </ExerciseTable>
+      <div className="flex justify-end px-10">
+        <AddWorkoutExercise workoutId={workoutId} />
+      </div>
     </>
   );
 }

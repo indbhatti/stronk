@@ -110,7 +110,7 @@ export default function WorkoutDescription({
           disabled={loading}
           className="flex w-full rounded border border-indigo-600 bg-indigo-600 px-6 py-3 text-sm font-medium
        text-white hover:bg-transparent dark:hover:text-white focus:outline-none 
-       focus:ring active:text-opacity-75 sm:w-auto hover:text-black"
+       focus:ring active:text-opacity-75 sm:w-auto hover:text-black mb-5"
         >
           {loading ? "Saving..." : "Save"}
           <svg

@@ -2,12 +2,15 @@
 
 import { IWorkout } from "@/Types/models";
 import { fetchWithRetry } from "./fetch";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import K from "@/Utility/constants";
 
 export const getWorkouts = async () => {
   const response = await fetchWithRetry(`${process.env.API_URI}/workout`, {
     method: "GET",
+    next: {
+      tags: ["workouts"],
+    },
   });
   if (response.status !== 200) {
     console.error("Failed to fetch workouts");
@@ -30,6 +33,7 @@ export const addWorkout = async (name: string, description: string) => {
     console.error("Failed to add workout");
     return null;
   }
+  revalidateTag(K.Tags.Workouts);
   const data: IWorkout = await response.json();
 
   return data;
@@ -40,6 +44,9 @@ export const getWorkout = async (workoutId: String) => {
     `${process.env.API_URI}/workout/${workoutId}`,
     {
       method: "GET",
+      next: {
+        tags: ["workout"],
+      },
     }
   );
   if (response.status !== 200) {
@@ -54,6 +61,7 @@ export const getWorkout = async (workoutId: String) => {
 interface EditWorkout {
   name?: string;
   description?: string;
+  workoutExercises?: string[];
 }
 
 export const editWorkout = async (
@@ -74,6 +82,22 @@ export const editWorkout = async (
     console.error("Failed to edit workout name");
     return false;
   }
-  revalidatePath(K.Links.Workouts);
+  revalidateTag(K.Tags.Workouts);
+  revalidateTag(K.Tags.Workout);
+  return true;
+};
+
+export const deleteWorkout = async (workoutId: string) => {
+  const response = await fetchWithRetry(
+    `${process.env.API_URI}/workout/${workoutId}`,
+    {
+      method: "DELETE",
+    }
+  );
+  if (response.status !== 200) {
+    console.error("Failed to delete workout");
+    return false;
+  }
+  revalidateTag(K.Tags.Workouts);
   return true;
 };
