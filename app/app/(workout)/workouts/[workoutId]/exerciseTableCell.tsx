@@ -1,39 +1,31 @@
-import { ISet } from "@/Types/models";
-import K from "@/Utility/constants";
-import Link from "next/link";
+import { IWorkoutExercise } from "@/Types/models";
+import EditWorkoutExercise from "./(editWE)/editWorkoutExercise";
 
 export default function TableCell({
-  name,
-  description,
-  muscle,
-  sets,
+  wExercise,
 }: {
-  name: string;
-  description: string;
-  muscle: string;
-  sets: ISet[];
+  wExercise: IWorkoutExercise;
 }) {
   return (
     <tr className="text-gray-700 dark:text-gray-100">
       <td className="whitespace-nowrap px-4 py-2 font-medium dark:text-white text-gray-900">
-        {name}
+        {wExercise.exercise.name}
       </td>
-      <td className="whitespace-nowrap px-4 py-2 ">{description}</td>
-      <td className="whitespace-nowrap px-4 py-2">{muscle}</td>
+      <td className="whitespace-nowrap px-4 py-2 ">
+        {wExercise.exercise.description}
+      </td>
       <td className="whitespace-nowrap px-4 py-2">
-        {sets.map((set) => (
+        {wExercise.exercise.muscle.name}
+      </td>
+      <td className="whitespace-nowrap px-4 py-2">
+        {wExercise.sets.map((set) => (
           <div key={set._id}>
             {set.reps} reps at {set.weight} kgs
           </div>
         ))}
       </td>
       <td className="whitespace-nowrap px-4 py-2 flex justify-center">
-        <Link
-          href={`${K.Links.WorkoutExercise}`}
-          className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-        >
-          View
-        </Link>
+        <EditWorkoutExercise wExercise={wExercise} />
       </td>
     </tr>
   );

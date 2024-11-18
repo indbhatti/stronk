@@ -5,10 +5,11 @@ import { redirect } from "next/navigation";
 import WorkoutName from "./workoutName";
 import WorkoutDescription from "./workoutDescription";
 import ExerciseTableCell from "./exerciseTableCell";
-import AddWorkoutExercise from "./addWorkoutExercise";
+import AddWorkoutExercise from "./(addWE)/addWorkoutExercise";
 import Table from "../../../table";
 import { Suspense } from "react";
 import Loading from "@/app/loading";
+import DeleteWorkoutExercise from "./(deleteWE)/deleteWorkoutExercise";
 
 async function WorkoutExercise({
   params,
@@ -29,13 +30,7 @@ async function WorkoutExercise({
       />
       <Table headings={["Name", "Description", "Muscle", "Sets", "Link"]}>
         {workout.workoutExercises.map((exercise) => (
-          <ExerciseTableCell
-            key={exercise._id}
-            name={exercise.exercise.name}
-            description={exercise.exercise.description}
-            muscle={exercise.exercise.muscle.name}
-            sets={exercise.sets}
-          />
+          <ExerciseTableCell key={exercise._id} wExercise={exercise} />
         ))}
         {workout.workoutExercises.length === 0 ? (
           <tr>
@@ -47,7 +42,8 @@ async function WorkoutExercise({
           <></>
         )}
       </Table>
-      <div className="flex justify-end px-10">
+      <div className="flex justify-between px-10">
+        <DeleteWorkoutExercise workoutId={workoutId} />
         <AddWorkoutExercise workoutId={workoutId} />
       </div>
     </>

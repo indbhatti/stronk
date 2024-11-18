@@ -47,7 +47,7 @@ export default function SearchTerm({
       );
       setFilteredExerciseList(filteredList);
     }
-  }, [searchTerm]);
+  }, [searchTerm, exerciseList]);
 
   return (
     <div className="w-full py-4">

@@ -4,7 +4,7 @@ import K from "@/Utility/constants";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 dark:bg-black">
+    <footer className="bg-gray-300 dark:bg-black">
       <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="flex justify-center text-indigo-600">
           <Image

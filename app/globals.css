@@ -66,6 +66,6 @@
 
 @layer {
   body {
-    @apply dark:bg-gray-950;
+    @apply dark:bg-gray-950 bg-gray-100;
   }
 }

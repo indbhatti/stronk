@@ -48,3 +48,28 @@ export const addWorkoutExercise = async (
   }
   return true;
 };
+
+export const editWorkoutExercise = async (
+  workoutExerciseId: string,
+  workoutExercise: IExerciseData
+) => {
+  const data = {
+    sets: workoutExercise.sets,
+  };
+  const response = await fetchWithRetry(
+    `${process.env.API_URI}/workout-exercise/${workoutExerciseId}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
+  revalidateTag(K.Tags.Workout);
+  if (response.status !== 200) {
+    console.error("Failed to edit workout exercise");
+    return false;
+  }
+  return true;
+};

@@ -8,7 +8,7 @@ export default function Announcement() {
         <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h1 className="text-2xl font-bold dark:text-white text-gray-900 sm:text-3xl">
-              Logged In
+              Welcome to Stronk
             </h1>
 
             <p className="mt-1.5 text-sm dark:text-gray-100 text-gray-500">

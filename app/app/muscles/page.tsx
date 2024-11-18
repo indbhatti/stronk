@@ -29,7 +29,7 @@ async function Muscles() {
             key={muscle._id}
             title={muscle.name}
             subTitle={muscle.scientificName}
-            image={null} // add image
+            image={" "} // add image
             description={null} // add description to muscle model
           />
         ))

@@ -8,7 +8,7 @@ import LogoutWrapper from "../logoutWrapper";
 export default async function Header() {
   const decodedToken = await getDecodedServerToken();
   return (
-    <header className="dark:bg-gray-950 bg-gray-100 px-5 md:px-10 py-2">
+    <header className="dark:bg-gray-950 bg-gray-300 px-5 md:px-10 py-2">
       <div className="flex items-center justify-between">
         <div className="flex-1 md:flex md:items-center md:gap-12">
           <Link className=" text-white flex items-center" href="/">
