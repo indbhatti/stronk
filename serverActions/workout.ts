@@ -39,7 +39,7 @@ export const addWorkout = async (name: string, description: string) => {
   return data;
 };
 
-export const getWorkout = async (workoutId: String) => {
+export const getWorkout = async (workoutId: string) => {
   const response = await fetchWithRetry(
     `${process.env.API_URI}/workout/${workoutId}`,
     {

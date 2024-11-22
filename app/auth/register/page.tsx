@@ -1,5 +1,4 @@
 "use client";
-import Theme from "@/app/theme";
 import { registerUser } from "@/serverActions/auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -194,9 +193,6 @@ export default function Register() {
             </form>
           </div>
         </main>
-      </div>
-      <div className="hidden">
-        <Theme />
       </div>
     </section>
   );

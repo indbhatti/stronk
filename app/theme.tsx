@@ -8,11 +8,8 @@ export default function Theme({ className }: { className?: string }) {
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
-      document.body.classList.toggle("dark", savedTheme === "dark");
       setIsDark(savedTheme === "dark");
     } else {
-      // if no theme is saved, defualt to dark
-      document.body.classList.toggle("dark");
       setIsDark(true);
     }
   }, []);

@@ -67,7 +67,7 @@ export default function Hamburger({
           >
             About
           </Link>
-          <Link
+          {/* <Link
             href={K.Links.Contact}
             className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
           >
@@ -78,7 +78,7 @@ export default function Hamburger({
             className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200"
           >
             Blog
-          </Link>
+          </Link> */}
           {decodedToken ? (
             <>
               <Link
@@ -91,7 +91,7 @@ export default function Hamburger({
           ) : (
             <></>
           )}
-          <div className="block py-2">
+          <div className="block px-4 py-2 dark:text-white text-gray-800 dark:hover:bg-gray-700 hover:bg-gray-200">
             <Theme />
           </div>
         </div>
