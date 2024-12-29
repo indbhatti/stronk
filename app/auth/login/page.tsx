@@ -1,5 +1,5 @@
 "use client";
-import { loginUser } from "@/serverActions/auth";
+import { loginUser, resendVerificationEmail } from "@/serverActions/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,7 +11,9 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const [errors, setError] = useState<string[]>([]);
+  const [error, setError] = useState<{ title: string; status: number } | null>(
+    null
+  );
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,19 +27,49 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
 
-    if (user.email && user.password) {
-      const res = await loginUser(user.email, user.password);
-      if (res.status === 200) {
-        router.push("/");
-      } else if (res.status === 500) {
-        setError(["Internal Server Error. Please try again later"]);
-      } else if (res.status === 403) {
-        setError(["Email not verified"]);
-      } else if (res.status === 401) {
-        setError(["Invalid credentials"]);
-      } else if (res.status === 404) {
-        setError(["User not found"]);
-      }
+    if (!user.email || !user.password) {
+      setLoading(false);
+    }
+
+    const res = await loginUser(user.email, user.password);
+    if (res.status === 200) {
+      router.push("/");
+    } else if (res.status === 500) {
+      setError({
+        title: "Internal Server Error. Please try again later",
+        status: 500,
+      });
+    } else if (res.status === 403) {
+      setError({ title: "Email not verified", status: 403 });
+    } else if (res.status === 401) {
+      setError({ title: "Invalid credentials", status: 401 });
+    } else if (res.status === 404) {
+      setError({ title: "User not found", status: 404 });
+    }
+    setLoading(false);
+  };
+
+  const handleResend = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    setLoading(true);
+    if (!user.email || !user.password) {
+      setLoading(false);
+    }
+    const res = await resendVerificationEmail(user.email, user.password);
+    console.log(res.status);
+    if (res.status === 200) {
+      router.push("/auth/verify-email");
+    } else if (res.status === 500) {
+      setError({
+        title: "Internal Server Error. Please try again later",
+        status: 500,
+      });
+    } else if (res.status === 401) {
+      setError({ title: "Invalid credentials", status: 401 });
+    } else if (res.status === 404) {
+      setError({ title: "User not found", status: 404 });
     }
     setLoading(false);
   };
@@ -107,13 +139,23 @@ export default function Login() {
               />
             </div>
           </div>
-          <div>
-            {errors.map((error, i) => (
-              <ul key={i} className="list-disc pl-5">
-                <li className="text-red-500">{error}</li>
+          {error && (
+            <div>
+              <ul className="list-disc pl-5">
+                <li className="text-red-500">{error.title}</li>
+                {error.status === 403 && (
+                  <button
+                    onClick={(e) => {
+                      handleResend(e);
+                    }}
+                    className="text-indigo-400 hover:text-indigo-500 active:text-indigo-600 underline"
+                  >
+                    Resend verification email.
+                  </button>
+                )}
               </ul>
-            ))}
-          </div>
+            </div>
+          )}
 
           <div>
             <button

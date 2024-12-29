@@ -179,3 +179,39 @@ export async function forgotPasswordEmail(email: string) {
     return { status: 500, message: "SERVER ERROR" };
   }
 }
+
+export async function checkUsername(username: string) {
+  try {
+    const response = await fetch(
+      `${process.env.API_URI}/check-username/${username}`
+    );
+    const result = await response.json();
+    return { status: response.status, message: result.message };
+  } catch (error) {
+    console.error(error);
+    return { status: 500, message: "SERVER ERROR" };
+  }
+}
+
+export async function resendVerificationEmail(email: string, password: string) {
+  const user = { email, password };
+  try {
+    const response = await fetch(
+      `${process.env.API_URI}/user/resend-verification-email`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    );
+
+    const result = await response.json();
+
+    return { status: response.status, message: result.message };
+  } catch (error) {
+    console.error(error);
+    return { status: 500, message: "SERVER ERROR" };
+  }
+}

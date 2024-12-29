@@ -1,11 +1,14 @@
 "use client";
 import { forgotPasswordEmail } from "@/serverActions/auth";
+import K from "@/Utility/constants";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState<string | null>(null);
   const [errors, setError] = useState<string[]>([]);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -19,7 +22,7 @@ export default function ForgotPassword() {
     if (temperrors.length == 0 && email) {
       const response = await forgotPasswordEmail(email);
       if (response.status === 200) {
-        setError(["Email Sent!"]);
+        setSuccess("Email Sent!");
       } else if (response.status === 500) {
         setError(["Internal Server Error. Please try again later"]);
       } else if (response.status === 404) {
@@ -64,6 +67,9 @@ export default function ForgotPassword() {
               />
             </div>
           </div>
+          {success && (
+            <div className="text-center text-green-500">{success}</div>
+          )}
           <div>
             {errors.map((error, i) => (
               <ul key={i} className="list-disc pl-5">
@@ -72,13 +78,18 @@ export default function ForgotPassword() {
             ))}
           </div>
 
-          <div>
+          <div className="flex flex-col">
             <button
               type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Send Email
             </button>
+            <Link href={K.Links.Login}>
+              <button className="my-2 flex w-full justify-center rounded-md border border-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                Back
+              </button>
+            </Link>
           </div>
         </form>
       </div>
