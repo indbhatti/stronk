@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# STRONK
 
-## Getting Started
+A web application for tracking gym progress, featuring secure authentication and robust backend support.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **User Authentication**: JWT-based authentication with refresh tokens stored in cookies for secure and seamless user sessions.
+- **Progress Tracking**: Log and monitor workouts, weight, reps, and personal records.
+- **RESTful API**: Backend developed with ExpressJS, providing clean and modular API routes.
+- **Data Persistence**: All gym data is stored in MongoDB for scalability and reliability.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Frontend
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **React 19**: A JavaScript library for building user interfaces, allowing for the creation of reusable UI components.
+- **NextJS**: A React framework that enables server-side rendering and static site generation, providing a robust solution for building modern web applications.
+- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom user interfaces.
 
-## Learn More
+### Backend
 
-To learn more about Next.js, take a look at the following resources:
+- **ExpressJS**: Backend framework for building RESTful APIs.
+- **JWT**: Authentication mechanism ensuring secure and stateless communication.
+- **Cookies**: Storing refresh tokens for user convenience and security.
+- **Resend**: A library for managing email sending and resending functionalities, ensuring reliable email delivery.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Additional Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Responsive Design**: Ensure the application is fully responsive and works seamlessly on various devices and screen sizes.
+- **Analytics Dashboard**: Provide users with visual insights and analytics of their gym progress over time.
+- **Social Sharing**: Allow users to share their progress and achievements on social media platforms.
+- **Customizable Workouts**: Enable users to create and customize their workout plans according to their preferences and goals.
+- **Multi-language Support**: Offer the application in multiple languages to cater to a broader audience.
 
-## Deploy on Vercel
+### Database
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **MongoDB**: NoSQL database for managing gym progress data efficiently.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Contact
+
+For questions or suggestions, contact [Your Name](mailto:your-email@example.com).
